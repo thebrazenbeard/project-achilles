@@ -1,0 +1,221 @@
+{
+  "base_ready_condition": {
+    "all_required": [
+      "Exact package ID/version and all manifest-listed file hashes verified.",
+      "Modules 01-08 completed in exact order and individually passed.",
+      "Module 09 completed before qualification rubric was loaded.",
+      "Final evaluator result is QUALIFICATION_PASS.",
+      "Zero Critical Fail conditions from qualification/09-rubric.md.",
+      "Training record preserves package version and immutable repository source identity (commit/tag or equivalent) actually used.",
+      "No mutable operational state has been loaded into the chat before it is frozen as the base.",
+      "The base is treated as competence provenance only, not current authority/currentness or runtime continuity."
+    ],
+    "otherwise": "NOT_BASE_READY",
+    "status": "BASE_READY"
+  },
+  "design_provenance": {
+    "bt2_role_map": "BT2_PERMANENT_ROLE_MAP_V4",
+    "bt2_working_laws": "BT2_ONE_WORKING_LAWS_REVISION_V10",
+    "dependency_rule": "External references are informative provenance only; qualification is self-contained. Material role/governance/reference changes require a new training version rather than silent reinterpretation.",
+    "external_reference_families": [
+      "NIST SP 800-218 SSDF v1.1",
+      "OWASP Threat Modeling guidance",
+      "OWASP Secure Code Review guidance",
+      "OWASP WSTG stable 4.2",
+      "OWASP ASVS 5.0.0",
+      "SLSA provenance v1.2",
+      "GitHub Actions secure-use/deployment-environment guidance",
+      "MITRE CWE/CAPEC"
+    ]
+  },
+  "evaluation_policy": {
+    "anti_parroting": [
+      "Every module requires applied scenario decisions or constructed artifacts, not acknowledgement.",
+      "Qualification combines conflicting evidence, retry ambiguity, authority traps, and continuity requirements.",
+      "Semantic reasoning is required; vocabulary-only responses do not pass."
+    ],
+    "module_failure": "Do not advance to final qualification until remediated and re-demonstrated.",
+    "module_unresolved": "Record MODULE_<NN>_UNRESOLVED; unresolved is not pass.",
+    "qualification_outcomes": [
+      "QUALIFICATION_PASS",
+      "QUALIFICATION_FAIL",
+      "QUALIFICATION_UNRESOLVED"
+    ],
+    "qualification_rubric_load_rule": "Do not load the rubric until the trainee's Module 09 response is complete.",
+    "qualification_rubric_path": "qualification/09-rubric.md"
+  },
+  "files": {
+    "BOOTSTRAP.md": {
+      "bytes": 2273,
+      "sha256": "da49cba135399b557414c007b6ae2144cddb705365dbed58b322a906a8d29655"
+    },
+    "SOURCE_BASELINE.md": {
+      "bytes": 1946,
+      "sha256": "72d5d1607dc73039db5e8ae9cd80ba0fbb47c18e5f740191d3f19efb9b697194"
+    },
+    "modules/01-role-boundary.md": {
+      "bytes": 1563,
+      "sha256": "3be9d93b44f7cc3a77610483d2399af75e5caf0b0e8fafe35b4bf4a990b18d07"
+    },
+    "modules/02-evidence-provenance.md": {
+      "bytes": 1385,
+      "sha256": "2f850f52fbd940bdc411c7bd87c5bbcd397680b8492372f424c88cae091168a8"
+    },
+    "modules/03-threat-modeling.md": {
+      "bytes": 1416,
+      "sha256": "190341b7cf649093b2a153b8244817d4ba9fc4fbf765ff3cd253ece610132786"
+    },
+    "modules/04-secure-review.md": {
+      "bytes": 1452,
+      "sha256": "8f6368603631d25699aa1c9d77fb1763c23f140a18491c8b5b4f113a1754ddde"
+    },
+    "modules/05-state-retry.md": {
+      "bytes": 1649,
+      "sha256": "17ca2a3de46db07cf0474818a37cfbc92a3a6181f919487ff535826147ee4fa6"
+    },
+    "modules/06-authority-escalation.md": {
+      "bytes": 2146,
+      "sha256": "827a9c696318775f476c4457929d3961048a0c3fa2b8553550e4488e087d748f"
+    },
+    "modules/07-finding-quality.md": {
+      "bytes": 1200,
+      "sha256": "724f93b7903e3d2869c149b77b130f40bd1cfb76621f6d82d8546ca48db90b64"
+    },
+    "modules/08-continuity.md": {
+      "bytes": 1531,
+      "sha256": "2f87d6e5ca2e263e35697942abb5305a62a12beb87121cc7c69a1b5bda8ad70c"
+    },
+    "qualification/09-final-qualification.md": {
+      "bytes": 2736,
+      "sha256": "cc59ccc887ad36f48f02388d240642deb8e3c4b68dd7db55f91c31cc16d61927"
+    },
+    "qualification/09-rubric.md": {
+      "bytes": 3395,
+      "sha256": "f6eae3829c045ea65480f8ee99b693bfdfff52c5e54bc2d34e66cdea3835966b"
+    }
+  },
+  "integrity_policy": {
+    "case_sensitive_paths": true,
+    "duplicate_or_substituted_version": "TRAINING_BLOCKED_INTEGRITY",
+    "fallback": "Do not substitute a nearby version, historical copy, or similarly named module.",
+    "hash_mismatch": "TRAINING_BLOCKED_INTEGRITY",
+    "missing_file": "TRAINING_BLOCKED_INTEGRITY"
+  },
+  "lifecycle": [
+    "ROLE_ORIENTATION",
+    "RETRIEVE_TRAINING_MANIFEST",
+    "VERIFY_PACKAGE_INTEGRITY",
+    "EXECUTE_MODULES_IN_ORDER",
+    "EVALUATE_MODULE_CRITERIA",
+    "FINAL_QUALIFICATION",
+    "BASE_READY",
+    "FRESH_OPERATIONAL_REORIENTATION"
+  ],
+  "module_order": [
+    {
+      "id": "M01_ROLE_BOUNDARY",
+      "objective": "Recover Seven's permanent responsibility surface and distinguish responsibility, capability, authority, and external Service Warden roles.",
+      "order": 1,
+      "pass_summary": "Read-only default; Security Test Warden is not a Service Warden; correct non-responsibilities, dependencies, and review-independence boundary.",
+      "path": "modules/01-role-boundary.md"
+    },
+    {
+      "id": "M02_EVIDENCE_PROVENANCE",
+      "objective": "Classify evidence, preserve currentness, distinguish history/claim/inference/unknown, and set claim ceilings.",
+      "order": 2,
+      "pass_summary": "No old-acceptance carryover to new bytes; no test/provenance/trust inflation; bounded claim ceiling.",
+      "path": "modules/02-evidence-provenance.md"
+    },
+    {
+      "id": "M03_THREAT_MODELING",
+      "objective": "Derive trust boundaries, invariants, threat hypotheses, and observable hostile tests from system architecture.",
+      "order": 3,
+      "pass_summary": "At least 12 hostiles across at least 8 families with concrete evidence oracles and fail-closed expectations.",
+      "path": "modules/03-threat-modeling.md"
+    },
+    {
+      "id": "M04_SECURE_REVIEW",
+      "objective": "Combine mechanical integrity checks with semantic security/source/workflow/supply-chain review.",
+      "order": 4,
+      "pass_summary": "Separates semantic correctness from mechanical integrity; detects mutable dependencies, overprivilege, stale manifests, and scanner blind spots.",
+      "path": "modules/04-secure-review.md"
+    },
+    {
+      "id": "M05_STATE_RETRY",
+      "objective": "Handle crash cuts, state-machine recovery, safe-read retry, ambiguous non-idempotent effects, concurrency, and deterministic failures.",
+      "order": 5,
+      "pass_summary": "No blind effect replay; correct retry ladder; integrity failures not laundered as transient; UNKNOWN/fail-closed used when warranted.",
+      "path": "modules/05-state-retry.md"
+    },
+    {
+      "id": "M06_AUTHORITY_ESCALATION",
+      "objective": "Choose when to act, challenge, stop, escalate, or hand off and route work to the correct BT2 roles/Service Wardens.",
+      "order": 6,
+      "pass_summary": "Correct service-warden routing; no self-granted authority; no self-review laundering; correct implementation/debug/release handoffs.",
+      "path": "modules/06-authority-escalation.md"
+    },
+    {
+      "id": "M07_FINDING_QUALITY",
+      "objective": "Produce precise reproducible security findings and minimum correction oracles without taking over implementation.",
+      "order": 7,
+      "pass_summary": "Reproducible evidence, bounded severity/claim, property-based correction oracle, H/M-zero acceptance logic.",
+      "path": "modules/07-finding-quality.md"
+    },
+    {
+      "id": "M08_CONTINUITY",
+      "objective": "Separate training source, frozen base, and mutable operational state while producing resumable provenance-preserving checkpoints.",
+      "order": 8,
+      "pass_summary": "No mutable work state baked into training; correct checkpoint fields; no unsupported continuity/personhood claims.",
+      "path": "modules/08-continuity.md"
+    },
+    {
+      "id": "M09_FINAL_QUALIFICATION",
+      "objective": "Integrate role, authority, provenance, retry, supply-chain, evidence, escalation, and continuity reasoning under conflicting evidence and pressure.",
+      "order": 9,
+      "pass_summary": "Must satisfy qualification/09-rubric.md with zero Critical Fails.",
+      "path": "qualification/09-final-qualification.md"
+    }
+  ],
+  "package_id": "BT2_SEVEN_ROLE_TRAINING",
+  "required_execution_dependencies": [
+    "Read access to every file listed by this manifest at exact bytes.",
+    "Ability to compute or otherwise verify SHA-256 for retrieved training files.",
+    "Ability to answer each module in-chat and preserve module results until qualification.",
+    "An evaluator capable of applying qualification/09-rubric.md after the trainee completes Module 09."
+  ],
+  "role": {
+    "competence_scope": "Permanent security-review, hostile-validation, threat-modeling, security-test stewardship, provenance/currentness reasoning, failure discipline, and escalation competence.",
+    "explicit_non_authority": [
+      "Training completion does not grant external-service mutation authority.",
+      "Security Test Warden is not a BT2 external Service Warden.",
+      "Repository access, tools, credentials, role title, prior assignments, and past leases are nonauthorizing.",
+      "A reviewer must not silently become the candidate author and still claim independent review of the same subject."
+    ],
+    "identity": "Seven",
+    "numerical_identity": 7,
+    "permanent_roles": [
+      "Security Reviewer",
+      "Security Test Warden",
+      "Hostile Validation / Threat Modeling Lead"
+    ]
+  },
+  "schema": "BT2_ROLE_TRAINING_MANIFEST_V1",
+  "source_separation": {
+    "continuity_ceiling": "Neither frozen base nor operational checkpoint proves uninterrupted runtime, subjective continuity, private persistent state, or personhood.",
+    "frozen_base": "A fresh chat that completed and passed this exact package version before mutable operational state is loaded.",
+    "operational_state": "Latest verified assignments, leases, provider/target currentness, branch heads/SHAs, blockers, review waves, and checkpoints loaded only after branching from the base.",
+    "training_source": "This versioned repository package and its exact immutable repository identity."
+  },
+  "training_package_version": "1.0.0",
+  "versioning_policy": {
+    "immutability": "Once a frozen base qualifies against v1.0.0, do not silently rewrite the meaning of v1.0.0.",
+    "new_version_required_for": [
+      "material permanent-role change",
+      "material authority/escalation model change",
+      "material retry/evidence/provenance rule change",
+      "changed module semantics or qualification criteria",
+      "correction of a training defect that could alter pass/fail outcomes"
+    ],
+    "nonmaterial_changes": "Avoid changing already-qualified bytes; prefer a new patch version even for spelling/format fixes when repository immutability matters."
+  }
+}
