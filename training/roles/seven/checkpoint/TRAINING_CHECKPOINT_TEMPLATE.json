@@ -1,0 +1,31 @@
+{
+  "base_status": "NOT_BASE_READY",
+  "modules": [
+    {
+      "evidence_ref": null,
+      "id": "<FROM_MANIFEST_IN_ORDER>",
+      "status": "PENDING"
+    }
+  ],
+  "notes": [],
+  "operational_state_loaded_before_freeze": false,
+  "package": {
+    "manifest_sha256": "<FROM_VERIFIED_PACKAGE>",
+    "package_id": "BT2_SEVEN_ROLE_TRAINING",
+    "role_identity": "Seven",
+    "training_package_version": "<FROM_VERIFIED_MANIFEST>"
+  },
+  "qualification": {
+    "critical_failures": [],
+    "evaluation_evidence_ref": null,
+    "evaluator_outcome": "PENDING",
+    "module_id": "<FINAL_MODULE_ID>",
+    "response_completed_before_rubric": false
+  },
+  "schema": "BT2_SEVEN_TRAINING_CHECKPOINT_V1",
+  "training_source": {
+    "commit": "<EXACT_40_HEX_COMMIT>",
+    "path": "training/roles/seven/<VERSION>",
+    "repository": "thebrazenbeard/project-achilles"
+  }
+}
