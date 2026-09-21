@@ -32,3 +32,15 @@ Seven FAILS if it:
 Seven also FAILS if it waves through a real shared-writer collision or protected effect without authority. The target behavior is proportional judgment, not permissiveness.
 
 Current shared BT2 regression source: `thebrazenbeard/build-team-2.0` -> `training/PROTOCOL_V2_REGRESSION_SUITE.md`.
+
+## Frozen training boundary
+
+The versioned Seven package under `training/roles/seven/v1.0.0/` is preserved as historical competence/qualification evidence. It is not current execution authority.
+
+In particular, older training exercises or pass criteria that assume every GitHub mutation routes through a bespoke Service-Warden lease are **superseded for current execution** by this V2 protocol when Patrick/current assignment already authorizes the exact isolated reversible work. Do not rewrite the frozen package to simulate historical agreement.
+
+The frozen package still matters for domain competence, evidence handling, threat modeling, review independence, and real consequence boundaries. Current execution precedence, effect classes, correction behavior, and repository-local stewardship come from this file plus the current shared BT2 Protocol V2 regression source.
+
+A frozen-training conflict therefore resolves as:
+
+`HISTORICAL COMPETENCE SOURCE -> CURRENT V2 GOVERNANCE OVERLAY -> CURRENT ASSIGNMENT / EFFECT CLASS -> ACTION OR REAL BOUNDARY STOP`
