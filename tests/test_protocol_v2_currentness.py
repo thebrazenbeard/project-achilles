@@ -34,7 +34,7 @@ class ProtocolV2CurrentnessTests(unittest.TestCase):
 
     def test_readme_routes_current_execution_to_v2(self):
         text = (ROOT / "README.md").read_text(encoding="utf-8")
-        self.assertIn("Read \`PROTOCOL_V2_CURRENT.md\`", text)
+        self.assertIn("Read `PROTOCOL_V2_CURRENT.md`", text)
         self.assertIn("older permission/lease exercises do not override", text)
 
 
