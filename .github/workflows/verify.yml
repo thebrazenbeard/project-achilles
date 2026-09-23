@@ -11,25 +11,25 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 0
-          persist-credentials: false
+      - name: Check out exact event commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh repo clone "$GITHUB_REPOSITORY" . -- --no-checkout
+          git checkout --detach "$GITHUB_SHA"
+          git remote set-url origin "https://github.com/${GITHUB_REPOSITORY}.git"
 
-      - name: Set up Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
-        with:
-          python-version: "3.12"
+      - name: Show interpreter
+        run: python3 --version
 
       - name: Compile Python
-        run: python -m compileall -q training tests
+        run: python3 -m compileall -q training tests
 
       - name: Run regression tests
-        run: python -m unittest discover -s tests -p 'test_*.py' -v
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
 
       - name: Verify frozen package manifest
-        run: python training/roles/seven/tools/training_checkpoint.py verify-package training/roles/seven/v1.0.0
+        run: python3 training/roles/seven/tools/training_checkpoint.py verify-package training/roles/seven/v1.0.0
 
       - name: Verify frozen package checksum ledger
         working-directory: training/roles/seven/v1.0.0
