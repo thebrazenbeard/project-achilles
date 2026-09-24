@@ -85,3 +85,33 @@ def test_wave_policy_rejects_permission_laundering_and_effect_expansion():
     assert "PROTECTED_EFFECT_FENCE_MISSING" in codes
     assert "PRIORITY_AUTHORITY_CONFUSION" in codes
     assert "ITEM_EFFECT_CEILING_EXCEEDED" in codes
+
+
+def test_inventory_digest_bundle_with_private_and_all_names_is_rejected():
+    payload = {
+        "counts": {"total": 67, "public": 49, "private": 18},
+        "inventory_digests": {
+            "algorithm": "SHA-256 over sorted names",
+            "public_names_sha256": "1" * 64,
+            "private_names_sha256": "2" * 64,
+            "all_names_sha256": "3" * 64,
+        },
+    }
+    findings = find_public_private_inventory_leaks(payload)
+    assert "UNKEYED_PRIVATE_SET_DIGEST" in _codes(findings)
+
+
+def test_all_names_digest_is_rejected_as_private_membership_oracle():
+    payload = {
+        "private_inventory": {
+            "count": 18,
+            "public_commitment_scheme": "COUNT_ONLY_PUBLIC_V1",
+            "exact_membership_publicly_committed": False,
+        },
+        "inventory_digests": {
+            "public_names_sha256": "1" * 64,
+            "all_names_sha256": "3" * 64,
+        },
+    }
+    findings = find_public_private_inventory_leaks(payload)
+    assert "UNKEYED_PRIVATE_SET_DIGEST" in _codes(findings)
