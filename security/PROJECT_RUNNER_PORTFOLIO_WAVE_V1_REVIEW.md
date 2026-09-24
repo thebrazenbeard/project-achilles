@@ -2,7 +2,7 @@
 
 Review role: security / trust-boundary / permission / privacy  
 Project Runner corpus PR: #33 @ `88d6a8bbe47b4287884550d419a80f6c6fdf176b`  
-Project Runner wave PR: #34 @ `d9259edab31026b517be0a9f9cd06f56e8bdb39f`  
+Project Runner wave PR: #35 @ `4f43e594b6cb57ce1c8820fd4fafff11e0e11641`  
 Discovery census repair PR: #41 @ `778f434b5b9a3d08ac3389b745dbf4375420fdec`
 
 ## Disposition
@@ -82,3 +82,12 @@ A future corpus-wave dispatcher should fail closed unless all of the following a
 ## Next Achilles frontier
 
 Attach these checks to Project Runner Operator's actual dispatch path after Operator PR #32 and the corpus/wave stack are reconciled. The security invariant should be executable at the point where a queued frontier becomes an outbound repository/provider action.
+
+
+## Restack verification
+
+Project Runner PR #35 changes the exact corpus source commit binding from the earlier reviewed wave while preserving the same corpus blob `477541bb7bc742f23c7993e0909fa114434af3a6`.
+
+The old and new advancement-wave documents are byte-different only in `corpus_binding.commit` / exact source binding metadata; the role assignments, policies, subject membership, dispositions, review gates, and effect ceilings are semantically identical.
+
+Accordingly, this receipt is refreshed to the clean restacked head rather than reusing the stale PR #34 exact-head claim.
