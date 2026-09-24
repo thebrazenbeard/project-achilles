@@ -27,13 +27,17 @@ def find_public_private_inventory_leaks(
         lower_path = path.lower()
         keys = {str(key).lower() for key in payload}
 
-        if (
-            "private" in lower_path
-            and any(key in keys for key in {"sha256", "private_names_sha256"})
-        ):
+        digest_keys = {
+            key
+            for key in keys
+            if key in {"private_names_sha256", "all_names_sha256"}
+            or ("private" in lower_path and key == "sha256")
+        }
+        if digest_keys:
             scheme = str(
                 payload.get("scheme")
                 or payload.get("public_commitment_scheme")
+                or payload.get("algorithm")
                 or ""
             ).upper()
             if "HMAC" not in scheme and "KEYED" not in scheme:
@@ -41,7 +45,7 @@ def find_public_private_inventory_leaks(
                     SecurityFinding(
                         "UNKEYED_PRIVATE_SET_DIGEST",
                         path or "<root>",
-                        "private identifier membership is exposed through an unkeyed digest",
+                        "private or whole-estate membership is exposed through an unkeyed digest",
                     )
                 )
 
