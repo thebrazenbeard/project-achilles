@@ -16,14 +16,16 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh repo clone "$GITHUB_REPOSITORY" . -- --no-checkout
-          git checkout --detach "$GITHUB_SHA"
           git remote set-url origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --no-tags --depth=1 origin "$GITHUB_REF"
+          git checkout --detach "$GITHUB_SHA"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
 
       - name: Show interpreter
         run: python3 --version
 
       - name: Compile Python
-        run: python3 -m compileall -q training tests
+        run: python3 -m compileall -q training tests security
 
       - name: Run regression tests
         run: python3 -m unittest discover -s tests -p 'test_*.py' -v
