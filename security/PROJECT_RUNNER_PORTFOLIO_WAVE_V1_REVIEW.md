@@ -1,9 +1,9 @@
 # Achilles Security Review — Project Runner Portfolio Advancement Wave V1
 
 Review role: security / trust-boundary / permission / privacy  
-Project Runner corpus PR: #33 @ `88d6a8bbe47b4287884550d419a80f6c6fdf176b`  
-Project Runner wave PR: #35 @ `4f43e594b6cb57ce1c8820fd4fafff11e0e11641`  
-Discovery census repair PR: #41 @ `778f434b5b9a3d08ac3389b745dbf4375420fdec`
+Project Runner corpus PR: #33 @ `381559dd07e52105b4e352a90e207a03c6793ff0`  
+Project Runner wave PR: #35 @ `e09f10c57f50fe39ccef25d398ff15a8fee8c2e5`  
+Discovery census repair PR: #41 @ `694bba641bdadbf6a50b22463c668c5d13e5f786`
 
 ## Disposition
 
@@ -91,3 +91,30 @@ Project Runner PR #35 changes the exact corpus source commit binding from the ea
 The old and new advancement-wave documents are byte-different only in `corpus_binding.commit` / exact source binding metadata; the role assignments, policies, subject membership, dispositions, review gates, and effect ceilings are semantically identical.
 
 Accordingly, this receipt is refreshed to the clean restacked head rather than reusing the stale PR #34 exact-head claim.
+
+
+## 2026-09-24 67-repository refresh
+
+The public estate advanced to 67 total / 49 public with the addition of
+`thebrazenbeard/sql-connectome`.
+
+Refreshed source evidence:
+
+- Project Runner #33 binds the 67/49 corpus and keeps private membership count-only;
+- Project Runner #35 binds the 51-subject public wave at `SOURCE_ONLY`;
+- Discovery #41 binds all 49 public repository heads/trees and its live watcher passes;
+- Discovery #43 composes the P0 manifest onto that privacy-safe line.
+
+A separate Discovery #42 branch contains deterministic unkeyed
+`private_names_sha256` and `all_names_sha256` values. That branch does not
+survive the public-private membership boundary and is not the recommended
+composition line.
+
+The reusable publication guard is strengthened in this review branch so digest
+keys are rejected even when they appear under a neutral container such as
+`inventory_digests`; the earlier implementation only reliably caught digests
+nested below a path containing the word `private`.
+
+Current security disposition:
+
+`SOURCE_ONLY_SECURITY_BOUNDARY_SURVIVES_67_REPO_REFRESH__DISCOVERY_PR42_PRIVATE_DIGEST_BRANCH_REJECTED`
