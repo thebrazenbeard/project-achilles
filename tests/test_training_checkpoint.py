@@ -113,6 +113,12 @@ class HardeningTests(unittest.TestCase):
                 ["git", "-C", str(repo), "config", "user.name", "Achilles Test"],
                 check=True,
             )
+            # The fixture proves exact Git bytes; it cannot inherit a Windows
+            # user's autocrlf policy that rewrites the source at git add.
+            subprocess.run(
+                ["git", "-C", str(repo), "config", "core.autocrlf", "false"],
+                check=True,
+            )
             subprocess.run(
                 [
                     "git",
@@ -133,6 +139,15 @@ class HardeningTests(unittest.TestCase):
             commit = subprocess.check_output(
                 ["git", "-C", str(repo), "rev-parse", "HEAD"], text=True
             ).strip()
+            # Prove the fixture committed the same bytes that the package
+            # verifier consumes, regardless of host-global Git settings.
+            committed_manifest = subprocess.check_output(
+                ["git", "-C", str(repo), "show",
+                 f"{commit}:training/roles/seven/v1.0.0/TRAINING_MANIFEST.json"]
+            )
+            self.assertEqual(
+                committed_manifest, (pkg_root / "TRAINING_MANIFEST.json").read_bytes()
+            )
             pkg = tc.verify_package(pkg_root)
             result = tc.verify_source_binding(
                 pkg_root,
