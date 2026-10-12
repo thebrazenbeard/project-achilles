@@ -36,8 +36,10 @@ def write_package(root: Path, module_path="module.md"):
         "module_order": [{"id": "M01", "order": 1, "path": module_path}],
         "evaluation_policy": {"qualification_rubric_path": "rubric.md"},
     }
-    (root / "TRAINING_MANIFEST.json").write_text(
-        json.dumps(manifest, sort_keys=True) + "\n", encoding="utf-8"
+    # Commit the same exact bytes that the verifier hashes on all hosts.
+    # Text-mode writes turn LF into CRLF on Windows before Git can normalize.
+    (root / "TRAINING_MANIFEST.json").write_bytes(
+        (json.dumps(manifest, sort_keys=True) + "\n").encode("utf-8")
     )
     return manifest
 
@@ -133,6 +135,18 @@ class HardeningTests(unittest.TestCase):
             commit = subprocess.check_output(
                 ["git", "-C", str(repo), "rev-parse", "HEAD"], text=True
             ).strip()
+            # Read back the committed blob instead of trusting the worktree.
+            # A Git newline filter must not mutate fixture bytes silently.
+            committed_manifest = subprocess.check_output(
+                [
+                    "git", "-C", str(repo), "show",
+                    f"{commit}:training/roles/seven/v1.0.0/TRAINING_MANIFEST.json",
+                ]
+            )
+            self.assertEqual(
+                (pkg_root / "TRAINING_MANIFEST.json").read_bytes(),
+                committed_manifest,
+            )
             pkg = tc.verify_package(pkg_root)
             result = tc.verify_source_binding(
                 pkg_root,
@@ -150,8 +164,8 @@ class HardeningTests(unittest.TestCase):
                 "sha256": sha256(changed),
                 "bytes": len(changed),
             }
-            (pkg_root / "TRAINING_MANIFEST.json").write_text(
-                json.dumps(manifest, sort_keys=True) + "\n", encoding="utf-8"
+            (pkg_root / "TRAINING_MANIFEST.json").write_bytes(
+                (json.dumps(manifest, sort_keys=True) + "\n").encode("utf-8")
             )
             changed_pkg = tc.verify_package(pkg_root)
             with self.assertRaisesRegex(tc.TrainingCheckpointError, "source commit"):
